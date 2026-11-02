@@ -1,0 +1,40 @@
+/* drawing ruler */
+.nav { position: sticky; top: 0; z-index: 80; background: rgba(7,26,66,.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: inset 0 -1px 0 var(--line2); }
+.navin { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: end; gap: 36px; min-height: 78px; padding-top: 10px; }
+.logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: #FFFFFF; align-self: center; }
+.logo:hover { color: #FFFFFF; }
+.logo b { font-family: var(--disp); font-weight: 900; font-size: 28px; letter-spacing: .04em; text-transform: uppercase; line-height: 1; }
+.logo b span { color: var(--yel); }
+.navr { display: flex; align-items: center; gap: 12px; align-self: center; }
+.navr :global(.btn) { white-space: nowrap; }
+.ruler { position: relative; align-self: stretch; display: flex; align-items: flex-end; min-width: 0; }
+.ticks { position: absolute; left: 0; right: 0; bottom: 0; height: 14px; background: repeating-linear-gradient(90deg, rgba(214,228,255,.5) 0 1px, transparent 1px 50px) left bottom/100% 14px no-repeat, repeating-linear-gradient(90deg, rgba(214,228,255,.22) 0 1px, transparent 1px 10px) left bottom/100% 7px no-repeat; pointer-events: none; }
+.base { position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--line2); }
+.rlinks { position: relative; display: flex; justify-content: space-between; width: 100%; padding-bottom: 20px; gap: 8px; }
+.rlinks a { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 1px; min-height: 44px; padding: 0 6px; text-decoration: none; color: var(--ink2); font-size: 14px; font-weight: 500; white-space: nowrap; transition: color .25s; }
+.n { font-family: var(--mono); font-size: 10px; color: var(--ink3); transition: color .25s; }
+.rlinks a::after { content: ""; position: absolute; left: 50%; bottom: -20px; width: 1px; height: 18px; background: rgba(214,228,255,.5); transition: height .3s var(--ease), background .3s; }
+.rlinks a:hover { color: #FFFFFF; }
+.rlinks a.on { color: #FFFFFF; }
+.rlinks a.on .n { color: var(--yel); }
+.rlinks a.on::after { background: var(--yel); height: 20px; width: 2px; }
+.marker { position: absolute; bottom: -1px; width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 10px solid var(--yel); transform: translateX(-50%); transition: left .55s var(--ease); pointer-events: none; }
+.readout { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: var(--ink3); text-transform: uppercase; white-space: nowrap; }
+.readout b { color: var(--yel); font-weight: 500; }
+
+@media (max-width: 1000px) {
+  .navin { grid-template-columns: auto auto; justify-content: space-between; align-items: center; gap: 14px; }
+  .ruler { grid-column: 1 / -1; order: 3; overflow-x: auto; overflow-y: hidden; padding-inline: 4px; }
+  /* the scale runs the whole scrolling width, not only the first screenful */
+  .ticks, .base { right: auto; width: max(100%, 728px); }
+  .rlinks { min-width: 720px; }
+  .readout { display: none; }
+}
+/* keeps the wordmark and the button on one row on small phones */
+@media (max-width: 389px) {
+  .navin { column-gap: 8px; }
+  .logo { gap: 8px; }
+  .logo svg { width: 26px; height: 26px; }
+  .logo b { font-size: 22px; }
+  .navr :global(.btn) { padding: 0 14px; font-size: 14px; }
+}

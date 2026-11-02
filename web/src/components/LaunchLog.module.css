@@ -1,0 +1,15 @@
+.log { margin-top: 56px; box-shadow: inset 0 0 0 1px var(--line2); background: rgba(7,26,66,.5); }
+.loghead { display: flex; justify-content: space-between; gap: 14px; padding: 14px 18px; box-shadow: inset 0 -1px 0 var(--line2); font-family: var(--mono); font-size: 11.5px; color: var(--ink3); flex-wrap: wrap; }
+.logrows { overflow-x: auto; }
+.lr { display: grid; grid-template-columns: 120px 230px minmax(0, 1fr) 120px; gap: 18px; align-items: center; min-height: 64px; padding: 10px 18px; box-shadow: inset 0 -1px 0 var(--line); min-width: 760px; transition: opacity .5s var(--ease) var(--dl), transform .5s var(--ease) var(--dl), background .25s; }
+.lr:hover { background: rgba(214,228,255,.05); }
+/* hidden before the animation only when JavaScript can play it */
+@media (scripting: enabled) {
+  .lr { opacity: 0; transform: translateY(12px); }
+  .log.go .lr { opacity: 1; transform: none; }
+}
+.t { font-family: var(--mono); font-size: 12.5px; color: var(--ink3); }
+.wh { font-weight: 600; }
+.ds { color: var(--ink2); font-size: 15.5px; }
+.chip { justify-self: start; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; padding: 5px 9px; box-shadow: inset 0 0 0 1px var(--line2); color: var(--ink2); }
+.chip.y { background: var(--yel); color: #0B1B3F; box-shadow: none; }

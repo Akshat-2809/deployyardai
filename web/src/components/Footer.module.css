@@ -1,0 +1,48 @@
+.foot { position: relative; background: #071A42; color: var(--ink); padding-block: 72px 0; overflow: hidden; box-shadow: inset 0 1px 0 var(--line2); }
+.fgrid { position: relative; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.1fr) minmax(0, .85fr) minmax(0, 1.5fr); gap: 48px; align-items: start; }
+
+.brand, .raise { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #FFFFFF; }
+.logo:hover { color: #FFFFFF; }
+.wm { font-family: var(--disp); font-weight: 900; font-size: 28px; letter-spacing: .04em; text-transform: uppercase; line-height: 1; }
+.wm span { color: var(--yel); }
+.motto { font-family: var(--disp); font-weight: 800; font-size: 30px; text-transform: uppercase; letter-spacing: .005em; line-height: 1; color: var(--yel); text-wrap: balance; }
+.about { color: var(--ink2); font-size: 17px; line-height: 1.5; }
+.info { display: flex; align-items: center; gap: 10px; color: var(--ink2); font-size: 16px; text-decoration: none; overflow-wrap: anywhere; }
+.info svg { flex: none; }
+a.info { min-height: 44px; transition: color .2s; }
+a.info:hover { color: #FFFFFF; }
+.links { display: flex; flex-direction: column; }
+
+.head { font-size: 30px; line-height: 34px; color: var(--yel); }
+.list { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; }
+.list a { display: inline-block; padding-block: 7px; color: var(--ink2); font-size: 17px; line-height: 1.4; text-decoration: none; transition: color .2s, transform .25s var(--ease); }
+.list a:hover { color: #FFFFFF; transform: translateX(4px); }
+
+.pill { display: flex; align-items: center; width: 100%; max-width: 380px; margin-top: 6px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #0B1B3F; }
+.pill:focus-within { outline: 3px solid var(--yel); outline-offset: 3px; }
+.pill input { flex: 1; min-width: 0; height: 52px; padding: 0 4px 0 22px; border: 0; border-radius: 999px 0 0 999px; background: transparent; color: #0B1B3F; font: inherit; font-size: 16px; outline: 0; }
+.pill input::placeholder { color: #4A5678; opacity: 1; }
+.pill button { flex: none; display: grid; place-items: center; width: 56px; height: 52px; padding: 0; border: 0; border-radius: 0 999px 999px 0; background: transparent; color: #22305A; cursor: pointer; transition: color .2s, transform .25s var(--ease); }
+.pill button:hover { color: #0B1B3F; transform: translateX(3px); }
+/* the whole pill shows focus */
+.foot .pill input:focus-visible, .foot .pill button:focus-visible { outline: 0; }
+
+/* the nav's ruler, with a line drawn along it */
+.tray { position: relative; margin-top: 64px; height: 30px; background: repeating-linear-gradient(90deg, rgba(214,228,255,.5) 0 1px, transparent 1px 50px) left bottom/100% 14px no-repeat, repeating-linear-gradient(90deg, rgba(214,228,255,.22) 0 1px, transparent 1px 10px) left bottom/100% 7px no-repeat, #0B2C6F; }
+.line { position: absolute; left: 0; right: 0; top: 6px; height: 3px; background: var(--yel); transform: scaleX(0); transform-origin: left; transition: transform 1.8s var(--ease); }
+.tray.go .line { transform: scaleX(1); }
+.end { position: absolute; right: calc(max(0px, (100% - 1240px) / 2) + clamp(18px, 4vw, 56px)); top: 0; width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 10px solid var(--yel); opacity: 0; transition: opacity .4s var(--ease) 1.4s; }
+.tray.go .end { opacity: 1; }
+.legal { position: relative; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--ink3); padding: 16px calc(max(0px, (100% - 1240px) / 2) + clamp(18px, 4vw, 56px)) 26px; font-family: var(--mono); font-size: 11.5px; }
+.legal a { display: inline-block; padding-block: 6px; margin-block: -6px; color: var(--ink3); text-decoration: none; }
+.legal a:hover { color: #FFFFFF; }
+
+@media (max-width: 1000px) {
+  .fgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px 32px; }
+  .brand, .raise { grid-column: 1 / -1; }
+}
+@media (max-width: 420px) {
+  .fgrid { column-gap: 20px; }
+  .list a { font-size: 16px; }
+}

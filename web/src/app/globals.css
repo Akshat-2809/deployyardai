@@ -1,0 +1,82 @@
+/* Design tokens and shared primitives, ported from design/project/Main.dc.html (.d) */
+:root {
+  --bp: #0B2C6F;
+  --bp2: #0E3683;
+  --bp3: #123F96;
+  --line: rgba(214,228,255,.16);
+  --line2: rgba(214,228,255,.32);
+  --ink: #FFFFFF;
+  --ink2: #C9D7F5;
+  --ink3: #A9BDE8;
+  --yel: #FFD43B;
+  --disp: var(--font-display), Impact, sans-serif;
+  --sans: var(--font-instrument), system-ui, -apple-system, sans-serif;
+  --mono: var(--font-jetbrains), ui-monospace, monospace;
+  --ease: cubic-bezier(.2, .8, .1, 1);
+  /* sticky nav height, so in-page anchors land below it */
+  --nav-offset: 78px;
+}
+
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #0B2C6F; }
+a { color: #FFFFFF; }
+a:hover { color: #FFE27A; }
+
+.d * { box-sizing: border-box; }
+.d {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--bp);
+  font-size: 17px;
+  line-height: 1.55;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  background-image: linear-gradient(rgba(214,228,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(214,228,255,.06) 1px, transparent 1px), linear-gradient(rgba(214,228,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(214,228,255,.03) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+}
+.d [id] { scroll-margin-top: var(--nav-offset); }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: clamp(18px, 4vw, 56px); }
+h1, h2, h3 { margin: 0; font-family: var(--disp); font-weight: 800; text-transform: uppercase; letter-spacing: .005em; line-height: .9; text-wrap: balance; }
+p { margin: 0; }
+
+.lab { font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink3); }
+.h2 { font-size: clamp(46px, 6.4vw, 104px); }
+.lede { font-size: 19px; color: var(--ink2); max-width: 56ch; }
+.ill { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink3); }
+
+.d a:focus-visible, .d button:focus-visible, .d input:focus-visible, .d [tabindex]:focus-visible { outline: 2px solid var(--yel); outline-offset: 3px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 22px; font: 600 15.5px var(--sans); text-decoration: none; border: 0; cursor: pointer; transition: transform .35s var(--ease), background .25s; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); }
+.btn-y { background: var(--yel); color: #0B1B3F; }
+.btn-y:hover { color: #0B1B3F; transform: translateY(-2px); }
+.btn-l { background: rgba(214,228,255,.1); color: #FFFFFF; }
+.btn-l:hover { background: rgba(214,228,255,.18); color: #FFFFFF; }
+
+.corners { position: relative; }
+.corners::before, .corners::after { content: ""; position: absolute; width: 16px; height: 16px; border-color: var(--yel); border-style: solid; pointer-events: none; }
+.corners::before { left: -1px; top: -1px; border-width: 2px 0 0 2px; }
+.corners::after { right: -1px; bottom: -1px; border-width: 0 2px 2px 0; }
+
+.sec { padding-block: 120px; position: relative; }
+.num { font-family: var(--mono); font-size: 12px; color: var(--yel); letter-spacing: .08em; text-transform: uppercase; }
+.shead { display: flex; flex-direction: column; gap: 18px; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* scroll-driven reveal */
+@supports (animation-timeline: view()) {
+  .rv { animation: rv linear both; animation-timeline: view(); animation-range: entry 5% entry 55%; }
+}
+@keyframes rv { from { opacity: 0; transform: translateY(36px); } }
+@keyframes blink { 50% { opacity: 0; } }
+
+@media (max-width: 1000px) {
+  /* the ruler moves to its own row */
+  :root { --nav-offset: 132px; }
+  .sec { padding-block: 90px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .d *, .d *::before, .d *::after { animation: none !important; transition: none !important; }
+}

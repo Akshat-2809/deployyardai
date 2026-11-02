@@ -1,0 +1,18 @@
+.ctg { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start; margin-top: 56px; }
+.form { padding: 28px; background: rgba(7,26,66,.55); box-shadow: inset 0 0 0 1px var(--line2); display: flex; flex-direction: column; gap: 18px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label, .flab { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink3); }
+.field input { min-height: 50px; border: 0; background: rgba(214,228,255,.06); box-shadow: inset 0 -2px 0 var(--line2); color: #FFFFFF; font: 400 17px var(--sans); padding: 0 12px; }
+.field input:focus { outline: none; box-shadow: inset 0 -2px 0 var(--yel); }
+.field input::placeholder { color: #8FA5D6; }
+.field input[aria-invalid="true"] { box-shadow: inset 0 -2px 0 #FFA48F; }
+.ferr { font-size: 14px; font-weight: 500; color: #FFC2B3; }
+.opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.opt { min-height: 44px; padding: 0 14px; border: 0; background: rgba(214,228,255,.08); color: var(--ink2); font: 500 14.5px var(--sans); cursor: pointer; transition: background .25s, color .25s; }
+.opt.on { background: #FFFFFF; color: #0B1B3F; }
+.send { align-self: flex-start; }
+.mail { font-family: var(--disp); font-weight: 800; font-size: clamp(32px, 3.6vw, 52px); text-transform: uppercase; text-decoration: none; line-height: 1; overflow-wrap: anywhere; }
+
+@media (max-width: 1000px) {
+  .ctg { grid-template-columns: minmax(0, 1fr); }
+}

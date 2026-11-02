@@ -1,0 +1,12 @@
+.band { background: var(--yel); color: #0B1B3F; padding-block: 64px; background-image: repeating-linear-gradient(135deg, rgba(11,27,63,.06) 0 14px, transparent 14px 28px); }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.stat { display: flex; flex-direction: column; gap: 8px; }
+.stat b { font-family: var(--disp); font-weight: 900; font-size: clamp(52px, 6vw, 92px); line-height: .85; }
+.stat span { font-size: 15.5px; color: #22305A; }
+
+@media (max-width: 1000px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .stats { grid-template-columns: minmax(0, 1fr); }
+}

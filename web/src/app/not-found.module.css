@@ -1,0 +1,8 @@
+.page { min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; padding-block: 60px; }
+.inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; width: 100%; }
+.logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: #FFFFFF; }
+.logo:hover { color: #FFFFFF; }
+.logo b { font-family: var(--disp); font-weight: 900; font-size: 28px; letter-spacing: .04em; text-transform: uppercase; line-height: 1; }
+.logo b span { color: var(--yel); }
+.big { font-size: clamp(160px, 30vw, 340px); line-height: .8; color: var(--yel); }
+.note { font-size: 20px; color: var(--ink2); }

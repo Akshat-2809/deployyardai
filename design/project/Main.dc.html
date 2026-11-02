@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Deployyard — Home</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#0B2C6F}
+a{color:#FFFFFF}a:hover{color:#FFE27A}
+.d *{box-sizing:border-box}
+.d{--bp:#0B2C6F;--bp2:#0E3683;--bp3:#123F96;--line:rgba(214,228,255,.16);--line2:rgba(214,228,255,.32);--ink:#FFFFFF;--ink2:#C9D7F5;--ink3:#A9BDE8;--disp:'Big Shoulders Display',Impact,sans-serif;--sans:'Instrument Sans',system-ui,-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;--ease:cubic-bezier(.2,.8,.1,1);font-family:var(--sans);color:var(--ink);background:var(--bp);font-size:17px;line-height:1.55;overflow-x:clip;-webkit-font-smoothing:antialiased;background-image:linear-gradient(rgba(214,228,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(214,228,255,.06) 1px,transparent 1px),linear-gradient(rgba(214,228,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(214,228,255,.03) 1px,transparent 1px);background-size:120px 120px,120px 120px,24px 24px,24px 24px}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:clamp(18px,4vw,56px)}
+h1,h2,h3{margin:0;font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:.005em;line-height:.9;text-wrap:balance}
+p{margin:0}
+.lab{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.h2{font-size:clamp(46px,6.4vw,104px)}
+.lede{font-size:19px;color:var(--ink2);max-width:56ch}
+.ill{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.d a:focus-visible,.d button:focus-visible,.d input:focus-visible{outline:2px solid var(--yel);outline-offset:3px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;font:600 15.5px var(--sans);text-decoration:none;border:0;cursor:pointer;transition:transform .35s var(--ease),background .25s;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.btn-y{background:var(--yel);color:#0B1B3F}
+.btn-y:hover{color:#0B1B3F;transform:translateY(-2px)}
+.btn-l{background:rgba(214,228,255,.1);color:#FFFFFF}
+.btn-l:hover{background:rgba(214,228,255,.18);color:#FFFFFF}
+.corners{position:relative}
+.corners::before,.corners::after{content:"";position:absolute;width:16px;height:16px;border-color:var(--yel);border-style:solid;pointer-events:none}
+.corners::before{left:-1px;top:-1px;border-width:2px 0 0 2px}
+.corners::after{right:-1px;bottom:-1px;border-width:0 2px 2px 0}
+/* TOP marker (logo only) */
+.logo{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:#FFFFFF}
+.logo:hover{color:#FFFFFF}
+.logo b{font-family:var(--disp);font-weight:900;font-size:28px;letter-spacing:.04em;text-transform:uppercase;line-height:1}
+.logo b span{color:var(--yel)}
+.stealth{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);padding:8px 12px;box-shadow:inset 0 0 0 1px var(--line2)}
+.stealth i{width:8px;height:8px;background:var(--yel);display:block;animation:blink 1.6s steps(2) infinite}
+/* NAV: drawing ruler */
+.nav{position:sticky;top:0;z-index:80;background:rgba(7,26,66,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 -1px 0 var(--line2)}
+.navin{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:end;gap:36px;min-height:78px;padding-top:10px}
+.navin .logo{align-self:center}
+.navr{display:flex;align-items:center;gap:12px;align-self:center}
+.ruler{position:relative;align-self:stretch;display:flex;align-items:flex-end;min-width:0}
+.ruler .ticks{position:absolute;left:0;right:0;bottom:0;height:14px;background:repeating-linear-gradient(90deg,rgba(214,228,255,.5) 0 1px,transparent 1px 50px) left bottom/100% 14px no-repeat,repeating-linear-gradient(90deg,rgba(214,228,255,.22) 0 1px,transparent 1px 10px) left bottom/100% 7px no-repeat;pointer-events:none}
+.ruler .base{position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line2)}
+.rlinks{position:relative;display:flex;justify-content:space-between;width:100%;padding-bottom:20px;gap:8px}
+.rlinks a{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:1px;min-height:44px;padding:0 6px;text-decoration:none;color:var(--ink2);font-size:14px;font-weight:500;white-space:nowrap;transition:color .25s}
+.rlinks a .n{font-family:var(--mono);font-size:10px;color:var(--ink3);transition:color .25s}
+.rlinks a::after{content:"";position:absolute;left:50%;bottom:-20px;width:1px;height:18px;background:rgba(214,228,255,.5);transition:height .3s var(--ease),background .3s}
+.rlinks a:hover{color:#FFFFFF}
+.rlinks a.on{color:#FFFFFF}
+.rlinks a.on .n{color:var(--yel)}
+.rlinks a.on::after{background:var(--yel);height:20px;width:2px}
+.marker{position:absolute;bottom:-1px;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:10px solid var(--yel);transform:translateX(-50%);transition:left .55s var(--ease);pointer-events:none}
+.readout{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink3);text-transform:uppercase;white-space:nowrap}
+.readout b{color:var(--yel);font-weight:500}
+/* HERO: the yard */
+.hero{position:relative;padding-block:80px 90px}
+.hgrid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:center}
+.h1{font-size:clamp(60px,8.6vw,138px);line-height:.86}
+.h1 span{color:var(--yel)}
+.hl{display:flex;flex-direction:column;gap:26px}
+.yard{padding:22px;background:rgba(7,26,66,.55);box-shadow:inset 0 0 0 1px var(--line2);display:flex;flex-direction:column;gap:16px}
+.ytop{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.levels{display:flex;gap:4px;flex-wrap:wrap}
+.lv{min-height:44px;padding:0 14px;border:0;background:rgba(214,228,255,.08);color:var(--ink2);font:500 14px var(--sans);cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;line-height:1.15;transition:background .25s,color .25s}
+.lv small{font-family:var(--mono);font-size:10px;color:var(--ink3)}
+.lv.on{background:var(--yel);color:#0B1B3F}
+.lv.on small{color:#3B3A1A}
+.bays{display:grid;grid-template-columns:repeat(24,minmax(0,1fr));gap:3px;padding:10px;box-shadow:inset 0 0 0 1px var(--line)}
+.bay{position:relative;aspect-ratio:1;box-shadow:inset 0 0 0 1px rgba(214,228,255,.14)}
+.bay i{position:absolute;inset:22%;border-radius:50%;background:var(--yel);transform:scale(0);transition:transform .45s var(--ease);transition-delay:var(--dl)}
+.bay.on i{transform:scale(1)}
+.bay.on{box-shadow:inset 0 0 0 1px rgba(255,212,59,.45)}
+.ystat{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap}
+.ystat b{font-family:var(--disp);font-weight:900;font-size:64px;line-height:.8;color:#FFFFFF}
+.ystat b small{font-size:22px;color:var(--ink3);margin-left:8px;font-weight:700}
+/* STATEMENT: blueprint callouts */
+.sec{padding-block:120px;position:relative}
+.num{font-family:var(--mono);font-size:12px;color:var(--yel);letter-spacing:.08em;text-transform:uppercase}
+.statement{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(48px,7.2vw,118px);line-height:1.02;letter-spacing:.005em;margin-top:28px}
+.w{position:relative;display:inline-block;padding-bottom:6px}
+.w::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:12px;border:1.5px solid var(--yel);border-top:0;transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease)}
+.w sup{position:absolute;top:-4px;right:-26px;font-family:var(--mono);font-size:13px;font-weight:500;color:var(--yel);opacity:0;transition:opacity .6s}
+.stmt.go .w::after{transform:scaleX(1)}
+.stmt.go .w sup{opacity:1}
+.stmt.go .w:nth-of-type(2)::after{transition-delay:.15s}.stmt.go .w:nth-of-type(3)::after{transition-delay:.3s}.stmt.go .w:nth-of-type(4)::after{transition-delay:.45s}
+.legend{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:64px;box-shadow:inset 0 0 0 1px var(--line2)}
+.lg{padding:22px;display:flex;flex-direction:column;gap:10px}
+.lg + .lg{box-shadow:inset 1px 0 0 var(--line2)}
+.lg .k{font-family:var(--mono);font-size:12px;color:var(--yel)}
+.lg b{font-family:var(--disp);font-weight:800;font-size:30px;text-transform:uppercase;line-height:1}
+.lg p{color:var(--ink2);font-size:15.5px}
+/* STATS band */
+.band{background:var(--yel);color:#0B1B3F;padding-block:64px;background-image:repeating-linear-gradient(135deg,rgba(11,27,63,.06) 0 14px,transparent 14px 28px)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.stat{display:flex;flex-direction:column;gap:8px}
+.stat b{font-family:var(--disp);font-weight:900;font-size:clamp(52px,6vw,92px);line-height:.85}
+.stat span{font-size:15.5px;color:#22305A}
+/* LAUNCH LOG */
+.log{margin-top:56px;box-shadow:inset 0 0 0 1px var(--line2);background:rgba(7,26,66,.5)}
+.loghead{display:flex;justify-content:space-between;gap:14px;padding:14px 18px;box-shadow:inset 0 -1px 0 var(--line2);font-family:var(--mono);font-size:11.5px;color:var(--ink3);flex-wrap:wrap}
+.logrows{overflow-x:auto}
+.lr{display:grid;grid-template-columns:120px 230px minmax(0,1fr) 120px;gap:18px;align-items:center;min-height:64px;padding:10px 18px;box-shadow:inset 0 -1px 0 var(--line);min-width:760px;opacity:0;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease),background .25s}
+.lr:hover{background:rgba(214,228,255,.05)}
+.log.go .lr{opacity:1;transform:none}
+.lr .t{font-family:var(--mono);font-size:12.5px;color:var(--ink3)}
+.lr .wh{font-weight:600}
+.lr .ds{color:var(--ink2);font-size:15.5px}
+.chip{justify-self:start;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;padding:5px 9px;box-shadow:inset 0 0 0 1px var(--line2);color:var(--ink2)}
+.chip.y{background:var(--yel);color:#0B1B3F;box-shadow:none}
+/* FOUNDER */
+.fdr{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;align-items:start;margin-top:56px}
+.badge{padding:24px;background:rgba(7,26,66,.55);box-shadow:inset 0 0 0 1px var(--line2);display:flex;flex-direction:column;gap:16px}
+.ph{aspect-ratio:1;max-width:220px;background:repeating-linear-gradient(45deg,rgba(214,228,255,.08) 0 8px,transparent 8px 16px);box-shadow:inset 0 0 0 1px var(--line2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:var(--ink3)}
+.kv{display:flex;flex-direction:column}
+.kv div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;box-shadow:inset 0 -1px 0 var(--line);font-size:15px}
+.kv span{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.pull{font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:clamp(34px,3.6vw,56px);line-height:.98}
+.pull span{color:var(--yel)}
+/* CONTACT */
+.ctg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start;margin-top:56px}
+.form{padding:28px;background:rgba(7,26,66,.55);box-shadow:inset 0 0 0 1px var(--line2);display:flex;flex-direction:column;gap:18px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label,.flab{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.field input{min-height:50px;border:0;background:rgba(214,228,255,.06);box-shadow:inset 0 -2px 0 var(--line2);color:#FFFFFF;font:400 17px var(--sans);padding:0 12px}
+.field input:focus{outline:none;box-shadow:inset 0 -2px 0 var(--yel)}
+.field input::placeholder{color:#8FA5D6}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{min-height:44px;padding:0 14px;border:0;background:rgba(214,228,255,.08);color:var(--ink2);font:500 14.5px var(--sans);cursor:pointer;transition:background .25s,color .25s}
+.opt.on{background:#FFFFFF;color:#0B1B3F}
+/* FOOTER: drawing title block */
+.foot{padding-block:80px 120px}
+.tb{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));box-shadow:inset 0 0 0 1.5px var(--ink2)}
+.cell{padding:16px 18px;display:flex;flex-direction:column;gap:6px;box-shadow:inset -1px -1px 0 var(--line2);min-height:88px}
+.cell .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.cell .v{font-size:16px}
+.cell ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.cell ul a{text-decoration:none;min-height:36px;display:inline-flex;align-items:center;font-size:15.5px;color:#FFFFFF}
+.cell ul a:hover{color:var(--yel)}
+.cell.big b{font-family:var(--disp);font-weight:900;font-size:clamp(54px,7vw,104px);line-height:.8;letter-spacing:.03em;text-transform:uppercase}
+.cell.big b span{color:var(--yel)}
+.revs{display:flex;flex-direction:column;font-family:var(--mono);font-size:12px;color:var(--ink2)}
+.revs div{display:grid;grid-template-columns:40px 80px minmax(0,1fr);gap:10px;padding:5px 0;box-shadow:inset 0 -1px 0 var(--line)}
+@supports (animation-timeline: view()){.rv{animation:rv linear both;animation-timeline:view();animation-range:entry 5% entry 55%}}
+@keyframes rv{from{opacity:0;transform:translateY(36px)}}
+@keyframes blink{50%{opacity:0}}
+@media (max-width:1000px){
+.hgrid,.fdr,.ctg{grid-template-columns:minmax(0,1fr)}
+.legend,.stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+.lg:nth-child(3){box-shadow:inset 0 1px 0 var(--line2)}
+.lg:nth-child(4){box-shadow:inset 1px 1px 0 var(--line2)}
+.tb .cell{grid-column:span 6!important}
+.navin{grid-template-columns:auto auto;justify-content:space-between;align-items:center;gap:14px}
+.ruler{grid-column:1/-1;order:3;overflow-x:auto;padding-inline:4px}
+.rlinks{min-width:720px}
+.readout{display:none}
+.sec{padding-block:90px}
+}
+@media (max-width:560px){
+.bays{grid-template-columns:repeat(12,minmax(0,1fr))}
+.bay.mob{display:none}
+.legend,.stats{grid-template-columns:minmax(0,1fr)}
+.lg + .lg,.lg:nth-child(3),.lg:nth-child(4){box-shadow:inset 0 1px 0 var(--line2)}
+.tb .cell{grid-column:span 12!important}
+}
+@media (prefers-reduced-motion:reduce){.d *,.d *::before,.d *::after{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="d" style="--yel: {{accent}}">
+
+<!-- NAV: drawing ruler -->
+<header class="nav">
+<div class="wrap navin">
+<a class="logo" href="#yard" aria-label="Deployyard home">
+<svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true"><path d="M2 10 V2 H10 M26 2 H34 V10 M34 26 V34 H26 M10 34 H2 V26" fill="none" stroke="{{accent}}" stroke-width="3"></path><rect x="9" y="9" width="18" height="18" fill="none" stroke="#FFFFFF" stroke-width="2"></rect><circle cx="18" cy="18" r="5" fill="{{accent}}"></circle></svg>
+<b>Deploy<span>yard</span></b>
+</a>
+<nav class="ruler" aria-label="Sections" data-ruler="1">
+<span class="ticks" aria-hidden="true"></span>
+<span class="base" aria-hidden="true"></span>
+<div class="rlinks">
+<a href="#yard" class="{{nav.c0}}" aria-current="{{nav.a0}}" data-rl="1"><span class="n">00</span><span>The yard</span></a>
+<a href="#building" class="{{nav.c1}}" aria-current="{{nav.a1}}" data-rl="1"><span class="n">01</span><span>What we're building</span></a>
+<a href="#record" class="{{nav.c2}}" aria-current="{{nav.a2}}" data-rl="1"><span class="n">02</span><span>Track record</span></a>
+<a href="#log" class="{{nav.c3}}" aria-current="{{nav.a3}}" data-rl="1"><span class="n">03</span><span>Launch log</span></a>
+<a href="#founder" class="{{nav.c4}}" aria-current="{{nav.a4}}" data-rl="1"><span class="n">04</span><span>Founder</span></a>
+<a href="#contact" class="{{nav.c5}}" aria-current="{{nav.a5}}" data-rl="1"><span class="n">05</span><span>Contact</span></a>
+</div>
+<span class="marker" style="left: {{markerL}}" aria-hidden="true"></span>
+</nav>
+<div class="navr">
+<span class="readout">Sec <b>{{curNum}}</b> / 05</span>
+<a class="btn btn-y" href="#contact" style="min-height: 44px">Get in touch</a>
+</div>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="yard" data-sec="0">
+<div class="wrap hgrid">
+<div class="hl">
+<span class="stealth" style="align-self: flex-start"><i></i>Building in stealth · India</span>
+<h1 class="h1">Infrastructure for robots <span>at scale.</span></h1>
+<p class="lede">We're building the infrastructure for scaled robotics deployment. Led by an operator who has launched businesses from zero, city by city.</p>
+<div style="display: flex; gap: 10px; flex-wrap: wrap"><a class="btn btn-y" href="#contact">Get in touch</a><a class="btn btn-l" href="#log">See the launch log</a></div>
+</div>
+<div class="yard corners">
+<div class="ytop">
+<span class="lab">The yard · scale it</span>
+<div class="levels" role="group" aria-label="Scale">
+<sc-for list="{{levels}}" as="l" hint-placeholder-count="4">
+<button type="button" class="lv {{l.cls}}" aria-pressed="{{l.pressed}}" onClick="{{l.pick}}">{{l.label}}<small>{{l.sub}}</small></button>
+</sc-for>
+</div>
+</div>
+<div class="bays" aria-hidden="true">
+<sc-for list="{{bays}}" as="b" hint-placeholder-count="240"><span class="bay {{b.cls}}" style="--dl: {{b.dl}}"><i></i></span></sc-for>
+</div>
+<div class="ystat" aria-live="polite">
+<b>{{count}}<small>{{unitWord}}</small></b>
+<span class="ill">Illustration · not real deployment data</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- STATEMENT -->
+<section class="sec" id="building" data-sec="1">
+<div class="wrap stmt {{stmtCls}}" data-stmt="1">
+<span class="num">01 / What we're building</span>
+<p class="statement">Building the <span class="w">infrastructure<sup>01</sup></span> for <span class="w">scaled<sup>02</sup></span> <span class="w">robotics<sup>03</sup></span> <span class="w">deployment.<sup>04</sup></span></p>
+<div class="legend">
+<div class="lg"><span class="k">01</span><b>Infrastructure</b><p>The layer underneath, not a single robot.</p></div>
+<div class="lg"><span class="k">02</span><b>Scaled</b><p>Built for many, not a one-off pilot.</p></div>
+<div class="lg"><span class="k">03</span><b>Robotics</b><p>Machines working in the real world.</p></div>
+<div class="lg"><span class="k">04</span><b>Deployment</b><p>Getting them into operation.</p></div>
+</div>
+<p class="lab" style="margin-top: 22px">More detail when we come out of stealth.</p>
+</div>
+</section>
+
+<!-- STATS -->
+<section class="band" id="record" data-sec="2" aria-label="Track record">
+<div class="wrap stats">
+<div class="stat"><b>$300M+</b><span>Uber Eats India business built by the launch team in 30 months</span></div>
+<div class="stat"><b>2 → 100s</b><span>That team, from 2 people to hundreds. He was employee #2.</span></div>
+<div class="stat"><b>50M+</b><span>Monthly active users reached by features he launched</span></div>
+<div class="stat"><b>4k+</b><span>Restaurant partnerships run by his team of 12 in Bengaluru</span></div>
+</div>
+</section>
+
+<!-- LAUNCH LOG -->
+<section class="sec" id="log" data-sec="3">
+<div class="wrap">
+<div class="rv" style="display: flex; flex-direction: column; gap: 18px">
+<span class="num">03 / Launch log</span>
+<h2 class="h2">Zero to one, <span style="color: {{accent}}">many times.</span></h2>
+<p class="lede">Before robots: cities, markets and products, launched from the ground up and then scaled.</p>
+</div>
+<div class="log {{logCls}}" data-log="1">
+<div class="loghead"><span>deployment_history.log</span><span>founder · Pramod Patil</span></div>
+<div class="logrows">
+<sc-for list="{{log}}" as="r" hint-placeholder-count="9">
+<div class="lr" style="transition-delay: {{r.dl}}"><span class="t">{{r.t}}</span><span class="wh">{{r.where}}</span><span class="ds">{{r.what}}</span><span class="chip {{r.cls}}">{{r.status}}</span></div>
+</sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOUNDER -->
+<section class="sec" id="founder" data-sec="4" style="padding-top: 20px">
+<div class="wrap">
+<div class="rv" style="display: flex; flex-direction: column; gap: 18px">
+<span class="num">04 / Founder</span>
+<h2 class="h2">Launch, product, operations.</h2>
+</div>
+<div class="fdr">
+<div class="badge corners">
+<div class="ph">[Founder photo]</div>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 44px">Pramod Patil</h3><span class="lab">Builder · Deployyard</span></div>
+<div class="kv">
+<div><span>Before</span>Deel · Uber</div>
+<div><span>At Uber</span>8 yrs 10 mos</div>
+<div><span>Worked across</span>Product, Ops, Marketing, CS</div>
+<div><span>Based</span>India</div>
+</div>
+<a href="https://www.linkedin.com/in/pramod-patil-53571a67/" style="font-size: 15px">LinkedIn ↗</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 26px">
+<p class="pull">Launching businesses <span>ground up.</span></p>
+<p class="lede">From launching Uber in Nagpur and Trivandrum, to being the second employee of Uber Eats India, to prioritising Uber Eats consumer features across North America, LATAM, APAC and EMEA from San Francisco, and then Product Operations at Deel.</p>
+<p class="lede">On the Uber Eats India team, in his words: “To witness a team grow from 2 people to hundreds, and a business grow from nothing to millions, was undoubtedly an experience of a lifetime.”</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec" id="contact" data-sec="5" style="padding-top: 20px">
+<div class="wrap">
+<div class="rv" style="display: flex; flex-direction: column; gap: 18px">
+<span class="num">05 / Get in touch</span>
+<h2 class="h2">Working with robots? <span style="color: {{accent}}">Let's talk.</span></h2>
+</div>
+<div class="ctg">
+<sc-if value="{{notSent}}" hint-placeholder-val="{{ true }}">
+<form class="form corners" onSubmit="{{submit}}">
+<div class="field"><label for="c-name">Name</label><input id="c-name" type="text" autocomplete="name" placeholder="Your name"></div>
+<div class="field"><label for="c-email">Email</label><input id="c-email" type="email" autocomplete="email" placeholder="you@company.com"></div>
+<div class="field"><span class="flab">I'm</span>
+<div class="opts" role="group" aria-label="I am">
+<sc-for list="{{roles}}" as="r" hint-placeholder-count="4">
+<button type="button" class="opt {{r.cls}}" aria-pressed="{{r.pressed}}" onClick="{{r.pick}}">{{r.label}}</button>
+</sc-for>
+</div>
+</div>
+<button type="submit" class="btn btn-y" style="align-self: flex-start">Send</button>
+</form>
+</sc-if>
+<sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
+<div class="form corners"><span class="lab">Received</span><h3 style="font-size: 48px">Thanks. We'll be in touch.</h3></div>
+</sc-if>
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p class="lede">Building robots, running operations where they'll work, investing, or want to build this with us. Write to</p>
+<a href="mailto:hello@deployyardai.com" style="font-family: var(--disp); font-weight: 800; font-size: clamp(32px, 3.6vw, 52px); text-transform: uppercase; text-decoration: none; line-height: 1">hello@deployyardai.com</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER: engineering drawing title block -->
+<footer class="foot">
+<div class="wrap">
+<div class="tb">
+<div class="cell big" style="grid-column: span 6"><span class="k">Project</span><b>Deploy<span>yard</span></b></div>
+<div class="cell" style="grid-column: span 6"><span class="k">Drawing</span><span class="v" style="font-family: var(--disp); font-weight: 700; font-size: 30px; text-transform: uppercase; line-height: 1">Infrastructure for scaled robotics deployment</span></div>
+<div class="cell" style="grid-column: span 3"><span class="k">Sections</span><ul><li><a href="#yard">The yard</a></li><li><a href="#building">What we're building</a></li><li><a href="#log">Launch log</a></li></ul></div>
+<div class="cell" style="grid-column: span 3"><span class="k">Company</span><ul><li><a href="#founder">Founder</a></li><li><a href="#contact">Get in touch</a></li><li><a href="https://www.linkedin.com/in/pramod-patil-53571a67/">LinkedIn ↗</a></li></ul></div>
+<div class="cell" style="grid-column: span 3"><span class="k">Scale</span><span class="v">1 : 1 → 1 : N</span><span class="k" style="margin-top: 10px">Status</span><span class="v" style="color: {{accent}}">In stealth</span></div>
+<div class="cell" style="grid-column: span 3"><span class="k">Contact</span><a class="v" href="mailto:hello@deployyardai.com" style="text-decoration: none">hello@deployyardai.com</a><span class="k" style="margin-top: 10px">Location</span><span class="v">India</span></div>
+<div class="cell" style="grid-column: span 8"><span class="k">Revisions</span><div class="revs"><div><span>REV</span><span>DATE</span><span>DESCRIPTION</span></div><div><span>A</span><span>OCT 2026</span><span>Building started</span></div></div></div>
+<div class="cell" style="grid-column: span 4"><span class="k">Sheet</span><span class="v">01 of 01 · © 2026 Deployyard</span><span class="v" style="font-size: 14px"><a href="#yard" style="color: #C9D7F5">Privacy</a> · <a href="#yard" style="color: #C9D7F5">Terms</a> · <a href="#yard" style="color: #C9D7F5">Top ↑</a></span></div>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#FFD43B","options":["#FFD43B","#7CF0C4","#FF9F43","#FFFFFF"]},"$preview":{"width":1440,"height":6800}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { lv: 0, touched: false, cur: 0, mk: 0, stmt: false, log: false, role: 0, sent: false };
+    this.lvls = [['Pilot', '1 unit', 1], ['Site', '12 units', 12], ['Fleet', '96 units', 96], ['Network', '240 units', 240]];
+    this.nav = [['00', 'Yard', '#yard'], ['01', 'Building', '#building'], ['02', 'Track record', '#record'], ['03', 'Launch log', '#log'], ['04', 'Founder', '#founder'], ['05', 'Contact', '#contact']];
+    this.logData = [
+      ['2013 – 14', 'Neon Gaming Studio', 'Co-founded an e-sports studio running online tournaments in India.', 'Founded'],
+      ['2015 – 17', 'Uber · Nagpur', 'Launched Uber from 0 to 1 as City Launcher. Ops, marketing, local regulatory relationships.', 'Launched'],
+      ['2015 – 17', 'Uber · Trivandrum', 'Second city launched from zero.', 'Launched'],
+      ['2017', 'Uber Eats India', '2nd employee. Part of the small team that launched in the first 5 major Indian cities.', 'Launched'],
+      ['2017 – 19', 'Uber Eats · Bengaluru', 'Built and led a team of 12 operations managers across 4k+ partnerships.', 'Scaled'],
+      ['2019 – 21', 'Uber Eats · US & Canada', 'Built scaled processes for merchant operations, San Francisco.', 'Scaled'],
+      ['2021 – 24', 'Uber Eats · Global', 'Consumer app features, some 0 to 1 at a global level, across NA, LATAM, APAC, EMEA.', 'Shipped'],
+      ['2025 – 26', 'Deel', 'Staff Product Operations Manager.', 'Shipped'],
+      ['Oct 2026', 'Deployyard', 'Building the infrastructure for scaled robotics deployment.', 'Building']
+    ];
+    this.roles = ['Building robots', 'Running operations', 'Investing', 'Want to join'];
+    var order = [];
+    for (var i = 0; i < 240; i++) order.push(i);
+    var center = 10 * 0 + 5 * 24 + 11;
+    order.sort(function (a, b) {
+      var ax = a % 24 - 11.5, ay = Math.floor(a / 24) - 4.5, bx = b % 24 - 11.5, by = Math.floor(b / 24) - 4.5;
+      return (ax * ax + ay * ay * 2.2) - (bx * bx + by * by * 2.2);
+    });
+    this.rank = [];
+    for (var j = 0; j < 240; j++) this.rank[order[j]] = j;
+  }
+  componentDidMount() {
+    var self = this;
+    this.auto = setInterval(function () { if (!self.state.touched) self.setState(function (s) { return { lv: (s.lv + 1) % 4 }; }); }, 2800);
+    this.onScroll = function () { if (self.raf) return; self.raf = requestAnimationFrame(function () { self.raf = null; self.measure(); }); };
+    document.addEventListener('scroll', this.onScroll, true);
+    window.addEventListener('resize', this.onScroll);
+    this.measure();
+    this.t0 = setTimeout(function () { self.measure(); }, 400);
+  }
+  componentWillUnmount() {
+    clearInterval(this.auto); clearTimeout(this.t0);
+    if (this.raf) cancelAnimationFrame(this.raf);
+    document.removeEventListener('scroll', this.onScroll, true);
+    window.removeEventListener('resize', this.onScroll);
+  }
+  measure() {
+    var vh = window.innerHeight || 800;
+    var upd = {};
+    var secs = document.querySelectorAll('[data-sec]');
+    var cur = 0;
+    for (var i = 0; i < secs.length; i++) { if (secs[i].getBoundingClientRect().top < vh * 0.45) cur = parseInt(secs[i].getAttribute('data-sec'), 10); }
+    if (cur !== this.state.cur) upd.cur = cur;
+    var rl = document.querySelectorAll('[data-rl]');
+    var ru = document.querySelector('[data-ruler]');
+    if (rl[cur] && ru) { var mk = Math.round(rl[cur].getBoundingClientRect().left - ru.getBoundingClientRect().left + rl[cur].offsetWidth / 2 + ru.scrollLeft); if (mk !== this.state.mk) upd.mk = mk; }
+    var st = document.querySelector('[data-stmt]');
+    if (st && !this.state.stmt && st.getBoundingClientRect().top < vh * 0.7) upd.stmt = true;
+    var lg = document.querySelector('[data-log]');
+    if (lg && !this.state.log && lg.getBoundingClientRect().top < vh * 0.8) upd.log = true;
+    if (Object.keys(upd).length) this.setState(upd);
+  }
+  renderVals() {
+    var self = this;
+    var s = this.state;
+    var n = this.lvls[s.lv][2];
+    var bays = [];
+    for (var i = 0; i < 240; i++) {
+      var r = this.rank[i];
+      var col = i % 24;
+      bays.push({ cls: (r < n ? 'on' : '') + (col >= 12 ? ' mob' : ''), dl: (r < n ? Math.min(r, 120) * 6 : 0) + 'ms' });
+    }
+    return {
+      accent: this.props.accent ?? '#FFD43B',
+      markerL: s.mk + 'px',
+      curNum: this.nav[s.cur][0],
+      nav: (function () { var o = {}; for (var i = 0; i < 6; i++) { o['c' + i] = s.cur === i ? 'on' : ''; o['a' + i] = s.cur === i ? 'location' : 'false'; } return o; })(),
+      levels: this.lvls.map(function (l, i) { return { label: l[0], sub: l[1], cls: i === s.lv ? 'on' : '', pressed: i === s.lv ? 'true' : 'false', pick: function () { self.setState({ lv: i, touched: true }); } }; }),
+      bays: bays,
+      count: String(n),
+      unitWord: n === 1 ? 'unit · ' + this.lvls[s.lv][0].toLowerCase() : 'units · ' + this.lvls[s.lv][0].toLowerCase(),
+      stmtCls: s.stmt ? 'go' : '',
+      logCls: s.log ? 'go' : '',
+      log: this.logData.map(function (r, i) { return { t: r[0], where: r[1], what: r[2], status: r[3].toUpperCase(), cls: r[3] === 'Building' ? 'y' : '', dl: (i * 0.07).toFixed(2) + 's' }; }),
+      roles: this.roles.map(function (r, i) { return { label: r, cls: i === s.role ? 'on' : '', pressed: i === s.role ? 'true' : 'false', pick: function () { self.setState({ role: i }); } }; }),
+      sent: s.sent, notSent: !s.sent,
+      submit: function (e) { if (e && e.preventDefault) e.preventDefault(); self.setState({ sent: true }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
