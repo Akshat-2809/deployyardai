@@ -104,7 +104,7 @@ const SECTIONS: LegalSection[] = [
   {
     id: "other-sites",
     title: "Other websites",
-    body: <p>Some links lead to sites we don&apos;t run, including LinkedIn. We aren&apos;t responsible for their content, terms or privacy practices.</p>,
+    body: <p>Some links lead to sites we don&apos;t run. We aren&apos;t responsible for their content, terms or privacy practices.</p>,
   },
   {
     id: "no-promises",
